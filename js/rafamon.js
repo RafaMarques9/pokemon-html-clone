@@ -102,7 +102,7 @@ function drawBorderTile(x, y) {
 }
 
 function drawObstacleTile(x, y) {
-    CTX.fillStyle = "rgba(255,0,0,1)";
+    CTX.fillStyle = "rgba(200,100,0,1)";
     CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 }
 
