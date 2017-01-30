@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Rafa Marques - Pokemon</title>
+		<script type="text/javascript" src="jquery/jquery-1.7.min.js"></script>
+        <script type="text/javascript" src="js/rafamon.js"></script>
+		<script type="text/javascript">
+			$(document).keydown(onKeyDown);
+			$(document).keyup(onKeyUp);
+		</script>
+		<style type="text/css">
+            body {
+                background: #333399;
+            }
+            
+            #canvas {
+                background: #FFF;
+				border: 1px solid #000;
+                display: block;
+                margin: 0 auto;
+			}
+		</style>
+	</head>
+    <body onload="startGame()">
+		<canvas id="canvas" width="1280" height="720"></canvas>
+	</body>
+</html>
