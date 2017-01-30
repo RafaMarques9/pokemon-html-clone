@@ -11,7 +11,7 @@ var CANVAS_WIDTH = 1280;
 var CANVAS_HEIGHT = 720;
 var FPS = 60;
 var hero;
-var heroSprite = new Image()
+var heroSprite = new Image();
 
 function startGame() {
     CANVAS = document.getElementById("canvas");
@@ -20,7 +20,7 @@ function startGame() {
     heroSprite.src = "bilder/trainer.png";
     
     hero = {
-        speed: 10,
+        speed: 2,
         x: CANVAS_WIDTH / 2,
         y: CANVAS_HEIGHT / 2,
         moveLeft: false,
