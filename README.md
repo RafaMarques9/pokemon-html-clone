@@ -7,6 +7,8 @@ A simple Pokemon Game clone made with HTML5 and JavaScript.
 
 # TODO
 - Create a World. (City, Route etc.)
+- NPC that talk or battle with you
+- Move Animation Sprites
 - Start Menu & Pause Menu
 - Encounter wild Pokemon
 - Battle or Catch Wild Pokemon
