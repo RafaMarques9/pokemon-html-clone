@@ -12,6 +12,7 @@ var CANVAS_HEIGHT = 720;
 var FPS = 60;
 var hero;
 var heroSprite = new Image();
+var TILE_SIZE = 20;
 
 var testMap = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -69,7 +70,7 @@ function startGame() {
         sprite: heroSprite
     };
     
-    draw();
+    renderBg();
     
     setInterval(function() {
         update();
@@ -77,7 +78,7 @@ function startGame() {
 }
 
 // NEW Methode
-function draw() {
+function renderBg() {
     var self = this;
     CTX.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     CTX.fillStyle = "rgba(0,0,0,1)";
@@ -86,18 +87,16 @@ function draw() {
         console.log(testMap[y].length);
         for(var x = 0; x < testMap[y].length; x++) {
             var tile = testMap[y][x];
-            if(tile !== 0) {
-                console.log("x: " + x + " y: " + y);
-                drawTile(x, y);
+            if(tile === 1) {
+                drawBorderTile(x, y);
             }
         }
     }
 }
 
 // NEW Method
-function drawTile(x, y) {
-    console.log("x.pos: " + x*20 + " y.pos: " + y*20);
-    CTX.fillRect(x * 20, y * 20, 20, 20);
+function drawBorderTile(x, y) {
+    CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 }
 
 function update() {
