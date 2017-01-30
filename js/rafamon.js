@@ -116,6 +116,7 @@ function drawBackgroundTile(x, y) {
 // Dadurch werden die ganzen draw... functions unnötig da ich dieser Methode dann die Position und das zu malende tile gebe
 // Den Character aufs Spielfeld setzen und ihn bewegen können
 // Collision mit einbauen anhander der testMap
+// http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
 function drawCharacter() {
     
 }
