@@ -71,17 +71,15 @@ function startGame() {
     };
     
     renderBg();
+    drawCharacter();
     
     setInterval(function() {
         update();
     }, 1000/FPS);
 }
 
-// NEW Methode
 function renderBg() {
-    var self = this;
     CTX.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    //CTX.fillStyle = "rgba(0,0,0,1)";
     
     for(var y = 0; y < testMap.length; y++) {
         console.log(testMap[y].length);
@@ -98,7 +96,6 @@ function renderBg() {
     }
 }
 
-// NEW Method
 function drawBorderTile(x, y) {
     CTX.fillStyle = "rgba(0,0,0,1)";
     CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
@@ -112,6 +109,15 @@ function drawObstacleTile(x, y) {
 function drawBackgroundTile(x, y) {
     CTX.fillStyle = "rgba(123,123,123,1)";
     CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+}
+
+// TODO: Morgen
+// Die function drawTile(sprite, tileId, x, y) erstellen. 
+// Dadurch werden die ganzen draw... functions unnötig da ich dieser Methode dann die Position und das zu malende tile gebe
+// Den Character aufs Spielfeld setzen und ihn bewegen können
+// Collision mit einbauen anhander der testMap
+function drawCharacter() {
+    
 }
 
 function update() {
