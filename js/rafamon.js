@@ -91,6 +91,8 @@ function renderBg() {
                 drawBorderTile(x, y);
             } else if(tile === 2) {
                 drawObstacleTile(x, y);
+            } else {
+                drawBackgroundTile(x, y);
             }
         }
     }
@@ -104,6 +106,11 @@ function drawBorderTile(x, y) {
 
 function drawObstacleTile(x, y) {
     CTX.fillStyle = "rgba(255,0,0,1)";
+    CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+}
+
+function drawBackgroundTile(x, y) {
+    CTX.fillStyle = "rgba(123,123,123,1)";
     CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 }
 
