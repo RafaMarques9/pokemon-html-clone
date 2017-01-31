@@ -105,8 +105,7 @@ function renderBg(canvasLayer, map) {
 function renderCharacter(canvasLayer) {
     var layerContext = canvasLayer.getContext("2d");
     layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    layerContext.fillStyle = "rgba(255, 255, 255, 1)";
-    layerContext.fillRect(hero.x, hero.y, TILE_SIZE, TILE_SIZE);
+    layerContext.drawImage(hero.sprite, hero.x, hero.y);
 }
 
 function drawBorderTile(layerContext, x, y) {
