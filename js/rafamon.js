@@ -75,34 +75,13 @@ function startGame() {
         sprite: heroSprite
     };
     
-    //renderBg(); Old
     renderBg(canvasLayers[0], testMap);
     
     setInterval(function() {
         update();
+        renderCharacter(canvasLayers[1]);
     }, 1000/FPS);
 }
-
-/* Old Method
-function renderBg() {
-    CTX.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    
-    for(var y = 0; y < testMap.length; y++) {
-        console.log(testMap[y].length);
-        for(var x = 0; x < testMap[y].length; x++) {
-            var tile = testMap[y][x];
-            if(tile === 1) {
-                drawBorderTile(x, y);
-            } else if(tile === 2) {
-                drawObstacleTile(x, y);
-            } else {
-                drawBackgroundTile(x, y);
-            }
-        }
-    }
-}
-*/
-
 
 function renderBg(canvasLayer, map) {
     var layerContext = canvasLayer.getContext("2d");
@@ -161,12 +140,17 @@ function drawCharacter(x, y) {
     CTX.fillRect(hero.x, hero.y, TILE_SIZE, TILE_SIZE);
 }
 
+// TODO: checkCollisionWithMap
+
+function checkCollisionWithMap(map, playerPosX, playerPosY) {
+    
+}
+
 function update() {
 	if(hero.moveLeft  && hero.x > 0)                  { hero.x -= hero.speed; }
 	if(hero.moveRight && hero.x < CANVAS_WIDTH - 15)  { hero.x += hero.speed; }
 	if(hero.moveUp    && hero.y > 0)                  { hero.y -= hero.speed; }
 	if(hero.moveDown  && hero.y < CANVAS_HEIGHT - 22) { hero.y += hero.speed; }
-    renderCharacter(canvasLayers[1]);
 }
 
 function onKeyDown(evt) {
