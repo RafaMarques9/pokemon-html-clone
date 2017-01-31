@@ -6,7 +6,7 @@ A simple Pokemon Game clone made with HTML5 and JavaScript.
 The goal of this project is to have a very simple Pokemon Clone. With maybe one or two Cities and Routes where you can catch and battle some Pokemon. 
 
 # Features
-- Moving around in empty space
+- Moving around in empty space (Doesn't work in current version)
 
 # TODO
 - Create a World. (City, Route etc.)
