@@ -37,12 +37,12 @@ var testMap = [
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
-    [1,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
+    [1,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
-    [1,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
+    [1,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
@@ -55,8 +55,12 @@ var testMap = [
 ];
 
 function startGame() {
-    CANVAS = document.getElementById("canvas");
-    CTX = CANVAS.getContext("2d");
+    CANVAS = document.getElementById("canvas1");
+    var canvas1 = document.getElementById("canvas1");
+    var canvas2 = document.getElementById("canvas2");
+    canvasLayers.push(canvas1);
+    canvasLayers.push(canvas2);
+    CTX = canvasLayers[0].getContext("2d");
     
     heroSprite.src = "bilder/trainer.png";
     
@@ -71,14 +75,15 @@ function startGame() {
         sprite: heroSprite
     };
     
-    renderBg();
+    //renderBg(); Old
+    renderBg(canvasLayers[0], testMap);
     
     setInterval(function() {
         update();
-        drawCharacter();
     }, 1000/FPS);
 }
 
+/* Old Method
 function renderBg() {
     CTX.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     
@@ -96,20 +101,48 @@ function renderBg() {
         }
     }
 }
+*/
 
-function drawBorderTile(x, y) {
-    CTX.fillStyle = "rgba(0,0,0,1)";
-    CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+
+function renderBg(canvasLayer, map) {
+    var layerContext = canvasLayer.getContext("2d");
+    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    
+    for(var y = 0; y < map.length; y++) {
+        console.log(map[y].length);
+        for(var x = 0; x < map[y].length; x++) {
+            var tile = map[y][x];
+            if(tile === 1) {
+                drawBorderTile(layerContext, x, y);
+            } else if(tile === 2) {
+                drawObstacleTile(layerContext, x, y);
+            } else {
+                drawBackgroundTile(layerContext, x, y);
+            }
+        }
+    }
 }
 
-function drawObstacleTile(x, y) {
-    CTX.fillStyle = "rgba(0,102,0,1)";
-    CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+function renderCharacter(canvasLayer) {
+    var layerContext = canvasLayer.getContext("2d");
+    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    layerContext.fillStyle = "rgba(255, 255, 255, 1)";
+    layerContext.fillRect(hero.x, hero.y, TILE_SIZE, TILE_SIZE);
 }
 
-function drawBackgroundTile(x, y) {
-    CTX.fillStyle = "rgba(51,153,51,1)";
-    CTX.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+function drawBorderTile(layerContext, x, y) {
+    layerContext.fillStyle = "rgba(0,0,0,1)";
+    layerContext.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+}
+
+function drawObstacleTile(layerContext, x, y) {
+    layerContext.fillStyle = "rgba(0,102,0,1)";
+    layerContext.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+}
+
+function drawBackgroundTile(layerContext, x, y) {
+    layerContext.fillStyle = "rgba(51,153,51,1)";
+    layerContext.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 }
 
 // TODO: Morgen
@@ -130,9 +163,10 @@ function drawCharacter(x, y) {
 
 function update() {
 	if(hero.moveLeft  && hero.x > 0)                  { hero.x -= hero.speed; }
-	if(hero.moveRight && hero.x < CANVAS_WIDTH - 15) { hero.x += hero.speed; }
-	if(hero.moveUp    && hero.y > 0)                    { hero.y -= hero.speed; }
+	if(hero.moveRight && hero.x < CANVAS_WIDTH - 15)  { hero.x += hero.speed; }
+	if(hero.moveUp    && hero.y > 0)                  { hero.y -= hero.speed; }
 	if(hero.moveDown  && hero.y < CANVAS_HEIGHT - 22) { hero.y += hero.speed; }
+    renderCharacter(canvasLayers[1]);
 }
 
 function onKeyDown(evt) {
