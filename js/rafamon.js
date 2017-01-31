@@ -12,7 +12,6 @@ var CANVAS_HEIGHT = 720;
 var FPS = 60;
 var hero;
 var heroSprite = new Image();
-//var TILE_SIZE = 20;
 var TILE_SIZE = 16;
 var canvasLayers = [];
 
