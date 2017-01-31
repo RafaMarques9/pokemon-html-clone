@@ -13,6 +13,7 @@ var FPS = 60;
 var hero;
 var heroSprite = new Image();
 var TILE_SIZE = 20;
+var canvasLayers = [];
 
 var testMap = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -71,10 +72,10 @@ function startGame() {
     };
     
     renderBg();
-    drawCharacter();
     
     setInterval(function() {
         update();
+        drawCharacter();
     }, 1000/FPS);
 }
 
@@ -117,6 +118,11 @@ function drawBackgroundTile(x, y) {
 // Den Character aufs Spielfeld setzen und ihn bewegen können
 // Collision mit einbauen anhander der testMap
 // http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
+
+function drawTile(spriteId, tileId, x, y) {
+    console.log("drawTile(spriteId, tileId, x, y)");
+}
+
 function drawCharacter(x, y) {
     CTX.fillStyle = "rgba(255, 255, 255, 1)";
     CTX.fillRect(hero.x, hero.y, TILE_SIZE, TILE_SIZE);
