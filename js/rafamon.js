@@ -36,6 +36,7 @@ var pmU = new Image();
 var pm = new Image();
 
 var tilesArray = [grass, stoneOnGrass, longGrass, treeBl, treeBr, treeMl, treeMr, treeTl0, treeTr0, treeTl1, treeTr1, pelO, pelU, perO, perU, pl, pr, pmO, pmU, pm];
+var notWalkableId = [1, 3, 4, 5, 6, 9, 10];
 
 var spritesToLoad = 20;
 
@@ -243,36 +244,30 @@ function drawTile(layerContext, tileId, x, y) {
     }
 }
 
-// TODO: Morgen
-// Collision mit einbauen anhander der testMap
-// http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
-
-// TODO: checkCollisionWithMap
-
-function checkCollisionWithMap(map, playerPosX, playerPosY) {
-    
-}
-
 function update() {
-	if(hero.moveLeft  && hero.x > 0)                  { hero.x -= hero.speed; }
+	/*if(hero.moveLeft  && hero.x > 0)                  { hero.x -= hero.speed; }
 	if(hero.moveRight && hero.x < CANVAS_WIDTH - 15)  { hero.x += hero.speed; }
 	if(hero.moveUp    && hero.y > 0)                  { hero.y -= hero.speed; }
-	if(hero.moveDown  && hero.y < CANVAS_HEIGHT - 22) { hero.y += hero.speed; }
+	if(hero.moveDown  && hero.y < CANVAS_HEIGHT - 22) { hero.y += hero.speed; }*/
 }
 
 function onKeyDown(evt) {
     switch(evt.keyCode) {
 		case 37:
 			hero.moveLeft = true;
+            movePlayer(-TILE_SIZE, 0);
 			break;
 		case 38:
 			hero.moveUp = true;
+            movePlayer(0, -TILE_SIZE);
 			break;
 		case 39:
 			hero.moveRight = true;
+            movePlayer(TILE_SIZE, 0);
 			break;
 		case 40:
 			hero.moveDown = true;
+            movePlayer(0, TILE_SIZE);
 			break;
 	}
 	update();
@@ -293,5 +288,41 @@ function onKeyUp(evt) {
 			hero.moveDown = false;
 			break;
 	}
+}
 
-} 
+/* Player Movement */
+// hero Position als Pixel gespeichert (bsp. 48, 32)
+// soll immer + 16 (TILE_SIZE) bewegt werden. 
+function movePlayer(moveX, moveY) {
+    console.log("movePlayer()");
+    console.log("hero.x: " + hero.x + ", hero.y: " + hero.y);
+    hero.x = checkCollisionWithMap(0, hero.x, hero.y, moveX);
+    hero.y = checkCollisionWithMap(1, hero.x, hero.y, moveY);
+}
+
+// TODO:
+// Collision mit einbauen anhander der testMap
+// http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
+
+// TODO: checkCollisionWithMap
+
+function checkCollisionWithMap(isY, x, y, move) {
+    var newPosition = isY ? y : x;
+    var tryPosition = isY ? y + move : x + move;
+    var destinyTileId = testMap[y / TILE_SIZE][x / TILE_SIZE];
+    console.log("Fuck: " + destinyTileId);
+    
+    // Not walkable
+    // 1, 3, 4, 5, 6, 9, 10 
+    if(isY && jQuery.inArray(destinyTileId, notWalkableId)) {
+        console.log("isWalkable y");
+        newPosition = y + move;
+    } else if(!isY && jQuery.inArray(destinyTileId, notWalkableId)) {
+        console.log("isWalkable x");
+        newPosition = x + move;
+    }
+    
+    console.log("newPosition: " + newPosition + ", tryPosition: " + tryPosition);
+    
+    return newPosition;
+}
