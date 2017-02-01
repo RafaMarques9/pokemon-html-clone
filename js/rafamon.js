@@ -232,7 +232,7 @@ function renderBg(canvasLayer, map) {
 function renderCharacter(canvasLayer) {
     var layerContext = canvasLayer.getContext("2d");
     layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    layerContext.drawImage(hero.sprite, hero.x, hero.y);
+    layerContext.drawImage(hero.sprite, hero.x, hero.y - 5);
 }
 
 function drawTile(layerContext, tileId, x, y) {
