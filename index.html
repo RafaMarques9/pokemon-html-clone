@@ -14,7 +14,7 @@
                 background: #333399;
             }
             
-            #canvas1 {
+            #canvas {
 				border: 1px solid #000;
                 display: block;
                 margin: 0 auto;
@@ -24,9 +24,10 @@
     <body onload="startGame()">
 		<!--<canvas id="canvas" width="1280" height="720"></canvas>-->
         
-        <div style="position: relative;">
+        <div id="canvas" style="position: relative;">
             <canvas id="canvas1" width="1280" height="720" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
             <canvas id="canvas2" width="1280" height="720" style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+            <canvas id="canvas3" width="1280" height="720" style="position: absolute; left: 0; top: 0; z-index: 2;"></canvas>
         </div>
 	</body>
 </html>

@@ -114,10 +114,16 @@ var testMap = [
 
 function startGame() {
     CANVAS = document.getElementById("canvas1");
+    // Background Layer
     var canvas1 = document.getElementById("canvas1");
+    // Player Layer
     var canvas2 = document.getElementById("canvas2");
+    // Over Player & Ambient Animations
+    var canvas3 = document.getElementById("canvas3");
+    
     canvasLayers.push(canvas1);
     canvasLayers.push(canvas2);
+    canvasLayers.push(canvas3);
     CTX = canvasLayers[0].getContext("2d");
     
     loadImages();
@@ -229,6 +235,10 @@ function renderCharacter(canvasLayer) {
 }
 
 function drawTile(layerContext, tileId, x, y) {
+    if(tileId === 7 || tileId === 8) {
+        canvasLayers[2].getContext("2d").drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
+    }
+    
     layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
 }
 
