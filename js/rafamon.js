@@ -120,6 +120,26 @@ function startGame() {
     canvasLayers.push(canvas2);
     CTX = canvasLayers[0].getContext("2d");
     
+    loadImages();
+    
+    hero = {
+        speed: 2,
+        x: 48,
+        y: 32,
+        moveLeft: false,
+        moveUp: false,
+        moveRight: false,
+        moveDown: false,
+        sprite: heroSprite
+    };
+    
+    setInterval(function() {
+        update();
+        renderCharacter(canvasLayers[1]);
+    }, 1000/FPS);
+}
+
+function loadImages() {
     heroSprite.src = "bilder/trainer.png";
     grass.src = "bilder/grass.png";
     grass.onload = function() {spriteLoadCB();}
@@ -180,22 +200,6 @@ function startGame() {
     
     pm.src = "bilder/pfützeMitte.png";
     pm.onload = function() {spriteLoadCB();}
-    
-    hero = {
-        speed: 2,
-        x: 48,
-        y: 32,
-        moveLeft: false,
-        moveUp: false,
-        moveRight: false,
-        moveDown: false,
-        sprite: heroSprite
-    };
-    
-    setInterval(function() {
-        update();
-        renderCharacter(canvasLayers[1]);
-    }, 1000/FPS);
 }
 
 function spriteLoadCB() {
