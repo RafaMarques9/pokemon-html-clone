@@ -237,9 +237,10 @@ function renderCharacter(canvasLayer) {
 function drawTile(layerContext, tileId, x, y) {
     if(tileId === 7 || tileId === 8) {
         canvasLayers[2].getContext("2d").drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
+        layerContext.drawImage(tilesArray[0], x * TILE_SIZE, y * TILE_SIZE);
+    } else {
+        layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
     }
-    
-    layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
 }
 
 // TODO: Morgen
