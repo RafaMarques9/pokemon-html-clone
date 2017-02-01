@@ -9,10 +9,17 @@ var CANVAS;
 var CTX;
 var CANVAS_WIDTH = 1280;
 var CANVAS_HEIGHT = 720;
+var canvasLayers = [];
 var FPS = 60;
-var hero;
-var heroSprite = new Image();
+var TILE_SIZE = 16;
 
+var hero;
+
+/* Sprites */
+var heroSpriteDown = new Image();
+var heroSpriteUp = new Image();
+var heroSpriteLeft = new Image();
+var heroSpriteRight = new Image();
 var grass = new Image();
 var longGrass = new Image();
 var stoneOnGrass = new Image();
@@ -24,7 +31,6 @@ var treeTl0 = new Image();
 var treeTl1 = new Image();
 var treeTr0 = new Image();
 var treeTr1 = new Image();
-// Pfütze
 var pelO = new Image();
 var pelU = new Image();
 var perO = new Image();
@@ -35,13 +41,12 @@ var pmO = new Image();
 var pmU = new Image();
 var pm = new Image();
 
+var spritesToLoad = 24;
+
+// Map Tiles Array
 var tilesArray = [grass, stoneOnGrass, longGrass, treeBl, treeBr, treeMl, treeMr, treeTl0, treeTr0, treeTl1, treeTr1, pelO, pelU, perO, perU, pl, pr, pmO, pmU, pm];
+// Tiles ID from none Walkable tiles like the tree's
 var notWalkableId = [1, 3, 4, 5, 6, 9, 10];
-
-var spritesToLoad = 21;
-
-var TILE_SIZE = 16;
-var canvasLayers = [];
 
 /*
 * 0 - grass
@@ -137,18 +142,27 @@ function startGame() {
         moveUp: false,
         moveRight: false,
         moveDown: false,
-        sprite: heroSprite
+        sprite: heroSpriteDown
     };
     
     setInterval(function() {
-        update();
         //renderCharacter(canvasLayers[1]);
     }, 1000/FPS);
 }
 
+/* Loads all Sprites and calls the CB function */
 function loadImages() {
-    heroSprite.src = "bilder/trainer.png";
-    heroSprite.onload = function() {spriteLoadCB();}
+    heroSpriteDown.src = "bilder/trainerFaceDown.png";
+    heroSpriteDown.onload = function() {spriteLoadCB();}
+    
+    heroSpriteUp.src = "bilder/trainerFaceUp.png";
+    heroSpriteUp.onload = function() {spriteLoadCB();}
+    
+    heroSpriteLeft.src = "bilder/trainerFaceLeft.png";
+    heroSpriteLeft.onload = function() {spriteLoadCB();}
+    
+    heroSpriteRight.src = "bilder/trainerFaceRight.png";
+    heroSpriteRight.onload = function() {spriteLoadCB();}
     
     grass.src = "bilder/grass.png";
     grass.onload = function() {spriteLoadCB();}
@@ -211,6 +225,7 @@ function loadImages() {
     pm.onload = function() {spriteLoadCB();}
 }
 
+/* The CB function, when all Sprites are loaded calls the drawing functions */
 function spriteLoadCB() {
     spritesToLoad--;
     if(!spritesToLoad) {
@@ -219,6 +234,7 @@ function spriteLoadCB() {
     }
 }
 
+/* Renders the background on to the canvasLayer[0] */
 function renderBg(canvasLayer, map) {
     var layerContext = canvasLayer.getContext("2d");
     layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -232,12 +248,7 @@ function renderBg(canvasLayer, map) {
     }
 }
 
-function renderCharacter(canvasLayer) {
-    var layerContext = canvasLayer.getContext("2d");
-    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    layerContext.drawImage(hero.sprite, hero.x, hero.y - 5);
-}
-
+/* This is called by the renderBg function to draw the tile sprite to the canvasLayer */
 function drawTile(layerContext, tileId, x, y) {
     if(tileId === 7 || tileId === 8) {
         canvasLayers[2].getContext("2d").drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
@@ -247,12 +258,13 @@ function drawTile(layerContext, tileId, x, y) {
     }
 }
 
-// TODO: Wenn nicht mehr gebraucht löschen.
-function update() {
-	/*if(hero.moveLeft  && hero.x > 0)                  { hero.x -= hero.speed; }
-	if(hero.moveRight && hero.x < CANVAS_WIDTH - 15)  { hero.x += hero.speed; }
-	if(hero.moveUp    && hero.y > 0)                  { hero.y -= hero.speed; }
-	if(hero.moveDown  && hero.y < CANVAS_HEIGHT - 22) { hero.y += hero.speed; }*/
+/* 
+* Renders the Character to the canvasLayer[1] 
+*/
+function renderCharacter(canvasLayer) {
+    var layerContext = canvasLayer.getContext("2d");
+    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    layerContext.drawImage(hero.sprite, hero.x, hero.y - 5);
 }
 
 function onKeyDown(evt) {
@@ -260,21 +272,24 @@ function onKeyDown(evt) {
 		case 37:
 			hero.moveLeft = true;
             movePlayer(-TILE_SIZE, 0);
+            hero.sprite = heroSpriteLeft;
 			break;
 		case 38:
 			hero.moveUp = true;
             movePlayer(0, -TILE_SIZE);
+            hero.sprite = heroSpriteUp;
 			break;
 		case 39:
 			hero.moveRight = true;
             movePlayer(TILE_SIZE, 0);
+            hero.sprite = heroSpriteRight;
 			break;
 		case 40:
 			hero.moveDown = true;
             movePlayer(0, TILE_SIZE);
+            hero.sprite = heroSpriteDown;
 			break;
 	}
-	//update();
     renderCharacter(canvasLayers[1]);
 }
 
@@ -306,6 +321,10 @@ function movePlayer(moveX, moveY) {
 // TODO:
 // http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
 
+/*
+* This function checks if the character can walk on the next tile.
+*
+*/
 function checkCollisionWithMap(isY, x, y, move) {
     var newPosition = isY ? y : x;
     var tryPosition = isY ? y + move : x + move;
