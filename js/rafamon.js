@@ -17,11 +17,21 @@ var grass = new Image();
 var longGrass = new Image();
 var stoneOnGrass = new Image();
 
+var tilesArray = [];
+
 var spritesToLoad = 3;
 
 var TILE_SIZE = 16;
 var canvasLayers = [];
 
+/*
+* 0 - grass
+* 1 - stoneOnGrass
+* 2 - longGrass
+*
+*
+*
+*/
 var testMap = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -106,6 +116,9 @@ function startGame() {
 function spriteLoadCB() {
     spritesToLoad--;
     if(!spritesToLoad) {
+        tilesArray.push(grass);
+        tilesArray.push(stoneOnGrass);
+        tilesArray.push(longGrass);
         renderBg(canvasLayers[0], testMap);
     }
 }
@@ -118,13 +131,14 @@ function renderBg(canvasLayer, map) {
         console.log(map[y].length);
         for(var x = 0; x < map[y].length; x++) {
             var tile = map[y][x];
-            if(tile === 1) {
+            /*if(tile === 1) {
                 drawBorderTile(layerContext, x, y);
             } else if(tile === 2) {
                 drawLongGrassTile(layerContext, x, y);
             } else {
                 drawBackgroundTile(layerContext, x, y);
-            }
+            }*/
+            drawTile(layerContext, tile, x, y);
         }
     }
 }
@@ -133,6 +147,10 @@ function renderCharacter(canvasLayer) {
     var layerContext = canvasLayer.getContext("2d");
     layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     layerContext.drawImage(hero.sprite, hero.x, hero.y);
+}
+
+function drawTile(layerContext, tileId, x, y) {
+    layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
 }
 
 function drawBorderTile(layerContext, x, y) {
@@ -159,10 +177,6 @@ function drawBackgroundTile(layerContext, x, y) {
 // Den Character aufs Spielfeld setzen und ihn bewegen können
 // Collision mit einbauen anhander der testMap
 // http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
-
-function drawTile(spriteId, tileId, x, y) {
-    console.log("drawTile(spriteId, tileId, x, y)");
-}
 
 function drawCharacter(x, y) {
     CTX.fillStyle = "rgba(255, 255, 255, 1)";
