@@ -38,7 +38,7 @@ var pm = new Image();
 var tilesArray = [grass, stoneOnGrass, longGrass, treeBl, treeBr, treeMl, treeMr, treeTl0, treeTr0, treeTl1, treeTr1, pelO, pelU, perO, perU, pl, pr, pmO, pmU, pm];
 var notWalkableId = [1, 3, 4, 5, 6, 9, 10];
 
-var spritesToLoad = 20;
+var spritesToLoad = 21;
 
 var TILE_SIZE = 16;
 var canvasLayers = [];
@@ -142,12 +142,14 @@ function startGame() {
     
     setInterval(function() {
         update();
-        renderCharacter(canvasLayers[1]);
+        //renderCharacter(canvasLayers[1]);
     }, 1000/FPS);
 }
 
 function loadImages() {
     heroSprite.src = "bilder/trainer.png";
+    heroSprite.onload = function() {spriteLoadCB();}
+    
     grass.src = "bilder/grass.png";
     grass.onload = function() {spriteLoadCB();}
     
@@ -213,6 +215,7 @@ function spriteLoadCB() {
     spritesToLoad--;
     if(!spritesToLoad) {
         renderBg(canvasLayers[0], testMap);
+        renderCharacter(canvasLayers[1]);
     }
 }
 
@@ -244,6 +247,7 @@ function drawTile(layerContext, tileId, x, y) {
     }
 }
 
+// TODO: Wenn nicht mehr gebraucht löschen.
 function update() {
 	/*if(hero.moveLeft  && hero.x > 0)                  { hero.x -= hero.speed; }
 	if(hero.moveRight && hero.x < CANVAS_WIDTH - 15)  { hero.x += hero.speed; }
@@ -270,7 +274,8 @@ function onKeyDown(evt) {
             movePlayer(0, TILE_SIZE);
 			break;
 	}
-	update();
+	//update();
+    renderCharacter(canvasLayers[1]);
 }
 
 function onKeyUp(evt) {
@@ -294,35 +299,26 @@ function onKeyUp(evt) {
 // hero Position als Pixel gespeichert (bsp. 48, 32)
 // soll immer + 16 (TILE_SIZE) bewegt werden. 
 function movePlayer(moveX, moveY) {
-    console.log("movePlayer()");
-    console.log("hero.x: " + hero.x + ", hero.y: " + hero.y);
     hero.x = checkCollisionWithMap(0, hero.x, hero.y, moveX);
     hero.y = checkCollisionWithMap(1, hero.x, hero.y, moveY);
 }
 
 // TODO:
-// Collision mit einbauen anhander der testMap
 // http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
-
-// TODO: checkCollisionWithMap
 
 function checkCollisionWithMap(isY, x, y, move) {
     var newPosition = isY ? y : x;
     var tryPosition = isY ? y + move : x + move;
-    var destinyTileId = testMap[y / TILE_SIZE][x / TILE_SIZE];
-    console.log("Fuck: " + destinyTileId);
     
-    // Not walkable
-    // 1, 3, 4, 5, 6, 9, 10 
-    if(isY && jQuery.inArray(destinyTileId, notWalkableId)) {
-        console.log("isWalkable y");
+    var destinyTileId;
+    
+    if(isY) { destinyTileId = testMap[(y + move) / TILE_SIZE][x / TILE_SIZE];} else { destinyTileId = testMap[y / TILE_SIZE][(x + move) / TILE_SIZE];}
+    
+    if(isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
         newPosition = y + move;
-    } else if(!isY && jQuery.inArray(destinyTileId, notWalkableId)) {
-        console.log("isWalkable x");
+    } else if(!isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
         newPosition = x + move;
     }
-    
-    console.log("newPosition: " + newPosition + ", tryPosition: " + tryPosition);
     
     return newPosition;
 }
