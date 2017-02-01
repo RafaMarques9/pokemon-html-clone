@@ -17,7 +17,7 @@ var grass = new Image();
 var longGrass = new Image();
 var stoneOnGrass = new Image();
 
-var tilesArray = [];
+var tilesArray = [grass, stoneOnGrass, longGrass];
 
 var spritesToLoad = 3;
 
@@ -116,9 +116,6 @@ function startGame() {
 function spriteLoadCB() {
     spritesToLoad--;
     if(!spritesToLoad) {
-        tilesArray.push(grass);
-        tilesArray.push(stoneOnGrass);
-        tilesArray.push(longGrass);
         renderBg(canvasLayers[0], testMap);
     }
 }
@@ -131,13 +128,6 @@ function renderBg(canvasLayer, map) {
         console.log(map[y].length);
         for(var x = 0; x < map[y].length; x++) {
             var tile = map[y][x];
-            /*if(tile === 1) {
-                drawBorderTile(layerContext, x, y);
-            } else if(tile === 2) {
-                drawLongGrassTile(layerContext, x, y);
-            } else {
-                drawBackgroundTile(layerContext, x, y);
-            }*/
             drawTile(layerContext, tile, x, y);
         }
     }
@@ -153,35 +143,9 @@ function drawTile(layerContext, tileId, x, y) {
     layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
 }
 
-function drawBorderTile(layerContext, x, y) {
-    //layerContext.fillStyle = "rgba(0,0,0,1)";
-    //layerContext.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-    layerContext.drawImage(stoneOnGrass, x * TILE_SIZE, y * TILE_SIZE);
-}
-
-function drawLongGrassTile(layerContext, x, y) {
-    //layerContext.fillStyle = "rgba(0,102,0,1)";
-    //layerContext.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-    layerContext.drawImage(longGrass, x * TILE_SIZE, y * TILE_SIZE);
-}
-
-function drawBackgroundTile(layerContext, x, y) {
-    //layerContext.fillStyle = "rgba(51,153,51,1)";
-    //layerContext.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-    layerContext.drawImage(grass, x * TILE_SIZE, y * TILE_SIZE);
-}
-
 // TODO: Morgen
-// Die function drawTile(sprite, tileId, x, y) erstellen. 
-// Dadurch werden die ganzen draw... functions unnötig da ich dieser Methode dann die Position und das zu malende tile gebe
-// Den Character aufs Spielfeld setzen und ihn bewegen können
 // Collision mit einbauen anhander der testMap
 // http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
-
-function drawCharacter(x, y) {
-    CTX.fillStyle = "rgba(255, 255, 255, 1)";
-    CTX.fillRect(hero.x, hero.y, TILE_SIZE, TILE_SIZE);
-}
 
 // TODO: checkCollisionWithMap
 
