@@ -119,6 +119,8 @@ var testMap = [
     [3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4]
 ];
 
+var personHero;
+
 function startGame() {
     CANVAS = document.getElementById("canvas1");
     // Background Layer
@@ -134,6 +136,9 @@ function startGame() {
     CTX = canvasLayers[0].getContext("2d");
     
     loadImages();
+    
+    personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight]);
+    console.log(personHero.getSprite());
     
     hero = {
         speed: 2,
