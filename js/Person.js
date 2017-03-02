@@ -5,7 +5,6 @@ function Person(name, posX, posY, sprite, showSpriteId, collision) {
     this.sprite = sprite;
     this.showSpriteId = showSpriteId;
     this.collision = collision;
-    console.log("Person init: " + this.showSpriteId);
 }
 
 Person.prototype.getName = function() {

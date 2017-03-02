@@ -13,8 +13,7 @@ var canvasLayers = [];
 var FPS = 60;
 var TILE_SIZE = 16;
 
-var hero;
-// New Person.js Object
+// Person Object
 var personHero;
 
 /* Sprites */
@@ -140,19 +139,7 @@ function startGame() {
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0);
     console.log(personHero.getSprite());
     
-    /* Old person object
-    hero = {
-        speed: 2,
-        x: 48,
-        y: 32,
-        moveLeft: false,
-        moveUp: false,
-        moveRight: false,
-        moveDown: false,
-        sprite: heroSpriteDown
-    };
-    */
-    
+    // TODO: Delete
     setInterval(function() {
         //renderCharacter(canvasLayers[1]);
     }, 1000/FPS);
@@ -276,13 +263,6 @@ function renderCharacters(canvasLayer) {
     var layerContext = canvasLayer.getContext("2d");
     layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     
-    /* Old hero Object TODO: delete
-    layerContext.drawImage(hero.sprite, hero.x, hero.y - 5);
-    */
-    
-    /*
-    * New Person Object
-    */
     layerContext.drawImage(personHero.getSprite(), personHero.getXPos(), personHero.getYPos() - 5);
     
     layerContext.drawImage(profSprite, 13 * TILE_SIZE, (15 * TILE_SIZE) - 5);
@@ -291,55 +271,32 @@ function renderCharacters(canvasLayer) {
 function onKeyDown(evt) {
     switch(evt.keyCode) {
 		case 37:
-			// hero.moveLeft = true; TODO: Delete
             
-            // movePlayer(-TILE_SIZE, 0); TODO: Change
             // personHero.move(-TILE_SIZE, 0); So soll es aussehen
-            
-            // hero.sprite = heroSpriteLeft; TODO: Delete
             
             personHero.setShowSpriteId(2);
 			break;
 		case 38:
-			// hero.moveUp = true; TODO: Delete
-            // movePlayer(0, -TILE_SIZE); TODO: Change
-            // hero.sprite = heroSpriteUp; TODO: Delete
+            
+            // personHero.move(0, -TILE_SIZE); So soll es aussehen
+            
             personHero.setShowSpriteId(1);
 			break;
 		case 39:
-			// hero.moveRight = true; TODO: Delete
-            // movePlayer(TILE_SIZE, 0); TODO: Change
-            // hero.sprite = heroSpriteRight; TODO: Delete
+			
+            // personHero.move(TILE_SIZE, 0); So soll es aussehen
+            
             personHero.setShowSpriteId(3);
 			break;
 		case 40:
-			// hero.moveDown = true; TODO: Delete
-            // movePlayer(0, TILE_SIZE); TODO: Change
-            // hero.sprite = heroSpriteDown; TODO: Delete
+			
+            // personHero.move(0, TILE_SIZE); So soll es aussehen
+            
             personHero.setShowSpriteId(0);
 			break;
 	}
     renderCharacters(canvasLayers[1]);
 }
-
-/* TODO: Delete
-function onKeyUp(evt) {
-    	switch(evt.keyCode) {
-		case 37:
-			hero.moveLeft = false;
-			break;
-		case 38:
-			hero.moveUp = false;
-			break;
-		case 39:
-			hero.moveRight = false;
-			break;
-		case 40:
-			hero.moveDown = false;
-			break;
-	}
-}
-*/
 
 /* Player Movement */ 
 // hero Position als Pixel gespeichert (bsp. 48, 32)
