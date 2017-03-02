@@ -13,7 +13,7 @@ RenderHandler.prototype.drawBg = function(canvasLayerID, map) {
     for(var y = 0; y < mapArray.length; y++) {
         for(var x = 0; x < mapArray[y].length; x++) {
             var tile = mapArray[y][x];
-            drawTile(layerContext, tile, x, y);
+            this.drawTile(layerContext, tile, x, y);
         }
     }
 }

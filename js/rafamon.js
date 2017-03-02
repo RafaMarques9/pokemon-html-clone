@@ -240,30 +240,15 @@ function spriteLoadCB() {
     }
 }
 
-/* Renders the background on to the canvasLayer[0] */
-/*function renderBg(canvasLayer, map) {
-    var layerContext = canvasLayer.getContext("2d");
-    layerContext.clearRect(0, 0, map.getCanvasWidth(), map.getCanvasHeight());
-    
-    
-    for(var y = 0; y < map.getMap().length; y++) {
-        // console.log(map[y].length);
-        for(var x = 0; x < map.getMap()[y].length; x++) {
-            var tile = map.getMap()[y][x];
-            drawTile(layerContext, tile, x, y);
-        }
-    }
-}*/
-
 /* This is called by the renderBg function to draw the tile sprite to the canvasLayer */
-function drawTile(layerContext, tileId, x, y) {
+/*function drawTile(layerContext, tileId, x, y) {
     if(tileId === 7 || tileId === 8) {
         canvasLayers[2].getContext("2d").drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
         layerContext.drawImage(tilesArray[0], x * TILE_SIZE, y * TILE_SIZE);
     } else {
         layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
     }
-}
+}*/
 
 /* 
 * Renders the Character to the canvasLayer[1] 
