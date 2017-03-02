@@ -337,9 +337,10 @@ function onKeyUp(evt) {
 }
 */
 
-/* Player Movement */
+/* Player Movement */ 
 // hero Position als Pixel gespeichert (bsp. 48, 32)
-// soll immer + 16 (TILE_SIZE) bewegt werden. 
+// soll immer + 16 (TILE_SIZE) bewegt werden.
+// TODO: Change
 function movePlayer(moveX, moveY) {
     hero.x = checkCollisionWithMap(0, hero.x, hero.y, moveX);
     hero.y = checkCollisionWithMap(1, hero.x, hero.y, moveY);
