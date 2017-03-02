@@ -295,35 +295,5 @@ function onKeyDown(evt) {
     renderCharacters(canvasLayers[1]);
 }
 
-/* Player Movement */ 
-// hero Position als Pixel gespeichert (bsp. 48, 32)
-// soll immer + 16 (TILE_SIZE) bewegt werden.
-// TODO: Change
-function movePlayer(moveX, moveY) {
-    hero.x = checkCollisionWithMap(0, hero.x, hero.y, moveX);
-    hero.y = checkCollisionWithMap(1, hero.x, hero.y, moveY);
-}
-
 // TODO:
 // http://www.creativebloq.com/html5/build-tile-based-html5-game-31410992
-
-/*
-* This function checks if the character can walk on the next tile.
-*
-*/
-function checkCollisionWithMap(isY, x, y, move) {
-    var newPosition = isY ? y : x;
-    var tryPosition = isY ? y + move : x + move;
-    
-    var destinyTileId;
-    
-    if(isY) { destinyTileId = testMap[(y + move) / TILE_SIZE][x / TILE_SIZE];} else { destinyTileId = testMap[y / TILE_SIZE][(x + move) / TILE_SIZE];}
-    
-    if(isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
-        newPosition = y + move;
-    } else if(!isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
-        newPosition = x + move;
-    }
-    
-    return newPosition;
-}
