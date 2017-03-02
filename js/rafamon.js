@@ -137,12 +137,6 @@ function startGame() {
     loadImages();
     
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0);
-    console.log(personHero.getSprite());
-    
-    // TODO: Delete
-    setInterval(function() {
-        //renderCharacter(canvasLayers[1]);
-    }, 1000/FPS);
 }
 
 /* Loads all Sprites and calls the CB function */
