@@ -16,6 +16,9 @@ var TILE_SIZE = 16;
 // Person Object
 var personHero;
 
+// Map Object
+var testMapObject;
+
 /* Sprites */
 var heroSpriteDown = new Image();
 var heroSpriteUp = new Image();
@@ -137,6 +140,7 @@ function startGame() {
     loadImages();
     
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0);
+    testMapObject = new MapHandler(testMap, TILE_SIZE, notWalkableId, CANVAS_WIDTH, CANVAS_HEIGHT);
 }
 
 /* Loads all Sprites and calls the CB function */
@@ -221,7 +225,9 @@ function loadImages() {
 function spriteLoadCB() {
     spritesToLoad--;
     if(!spritesToLoad) {
-        renderBg(canvasLayers[0], testMap);
+        // renderBg(canvasLayers[0], testMap); TODO: Delete
+        renderBg(canvasLayers[0], testMapObject);
+        
         renderCharacters(canvasLayers[1]);
     }
 }
@@ -229,12 +235,13 @@ function spriteLoadCB() {
 /* Renders the background on to the canvasLayer[0] */
 function renderBg(canvasLayer, map) {
     var layerContext = canvasLayer.getContext("2d");
-    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    layerContext.clearRect(0, 0, map.getCanvasWidth(), map.getCanvasHeight());
     
-    for(var y = 0; y < map.length; y++) {
-        console.log(map[y].length);
-        for(var x = 0; x < map[y].length; x++) {
-            var tile = map[y][x];
+    
+    for(var y = 0; y < map.getMap().length; y++) {
+        // console.log(map[y].length);
+        for(var x = 0; x < map.getMap()[y].length; x++) {
+            var tile = map.getMap()[y][x];
             drawTile(layerContext, tile, x, y);
         }
     }

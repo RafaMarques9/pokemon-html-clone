@@ -1,3 +1,4 @@
+// 
 function MapHandler(map, tileSize, notWalkableTileIDs, canvasWidth, canvasHeight) {
     this.map = map;
     this.tileSize = tileSize;
