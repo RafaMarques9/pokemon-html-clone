@@ -292,8 +292,12 @@ function onKeyDown(evt) {
     switch(evt.keyCode) {
 		case 37:
 			// hero.moveLeft = true; TODO: Delete
+            
             // movePlayer(-TILE_SIZE, 0); TODO: Change
+            // personHero.move(-TILE_SIZE, 0); So soll es aussehen
+            
             // hero.sprite = heroSpriteLeft; TODO: Delete
+            
             personHero.setShowSpriteId(2);
 			break;
 		case 38:
