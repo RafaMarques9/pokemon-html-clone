@@ -22,6 +22,9 @@ var testMapObject;
 // Collision Object
 var collisionObject;
 
+// Render Object
+var renderObject;
+
 /* Sprites */
 var heroSpriteDown = new Image();
 var heroSpriteUp = new Image();
@@ -142,6 +145,7 @@ function startGame() {
     
     loadImages();
     
+    renderObject = new RenderHandler(canvasLayers);
     testMapObject = new MapHandler(testMap, TILE_SIZE, notWalkableId, CANVAS_WIDTH, CANVAS_HEIGHT);
     collisionObject = new CollisionMap(testMapObject);
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
@@ -229,15 +233,15 @@ function loadImages() {
 function spriteLoadCB() {
     spritesToLoad--;
     if(!spritesToLoad) {
-        // renderBg(canvasLayers[0], testMap); TODO: Delete
-        renderBg(canvasLayers[0], testMapObject);
+        // renderBg(canvasLayers[0], testMapObject);
+        renderObject.drawBg(0, testMapObject);
         
         renderCharacters(canvasLayers[1]);
     }
 }
 
 /* Renders the background on to the canvasLayer[0] */
-function renderBg(canvasLayer, map) {
+/*function renderBg(canvasLayer, map) {
     var layerContext = canvasLayer.getContext("2d");
     layerContext.clearRect(0, 0, map.getCanvasWidth(), map.getCanvasHeight());
     
@@ -249,7 +253,7 @@ function renderBg(canvasLayer, map) {
             drawTile(layerContext, tile, x, y);
         }
     }
-}
+}*/
 
 /* This is called by the renderBg function to draw the tile sprite to the canvasLayer */
 function drawTile(layerContext, tileId, x, y) {

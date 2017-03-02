@@ -1,3 +1,4 @@
+//
 function RenderHandler(canvases) {
     this.canvases = canvases;
 }
