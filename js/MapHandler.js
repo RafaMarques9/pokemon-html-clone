@@ -16,7 +16,7 @@ MapHandler.prototype.getTileSize = function() {
 }
 
 MapHandler.prototype.getNotWalkableTileIDs = function() {
-    return this.tileSize;
+    return this.notWalkableTileIDs;
 }
 
 MapHandler.prototype.getCanvasWidth = function() {
