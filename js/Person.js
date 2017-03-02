@@ -24,8 +24,8 @@ Person.prototype.getSprite = function() {
 };
 
 Person.prototype.move = function(x, y) {
-    this.x = this.collision.getPosition(0, this.x, this.y, moveX);
-    this.y = this.collision.getPosition(1, this.x, this.y, moveY);
+    this.x = this.collision.getPosition(0, this.x, this.y, x);
+    this.y = this.collision.getPosition(1, this.x, this.y, y);
 }
 
 Person.prototype.setShowSpriteId = function(spriteId) {

@@ -19,6 +19,9 @@ var personHero;
 // Map Object
 var testMapObject;
 
+// Collision Object
+var collisionObject;
+
 /* Sprites */
 var heroSpriteDown = new Image();
 var heroSpriteUp = new Image();
@@ -139,8 +142,9 @@ function startGame() {
     
     loadImages();
     
-    personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0);
     testMapObject = new MapHandler(testMap, TILE_SIZE, notWalkableId, CANVAS_WIDTH, CANVAS_HEIGHT);
+    collisionObject = new CollisionMap(testMapObject);
+    personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
 }
 
 /* Loads all Sprites and calls the CB function */
@@ -272,27 +276,19 @@ function renderCharacters(canvasLayer) {
 function onKeyDown(evt) {
     switch(evt.keyCode) {
 		case 37:
-            
-            // personHero.move(-TILE_SIZE, 0); So soll es aussehen
-            
+            personHero.move(-TILE_SIZE, 0);
             personHero.setShowSpriteId(2);
 			break;
 		case 38:
-            
-            // personHero.move(0, -TILE_SIZE); So soll es aussehen
-            
+            personHero.move(0, -TILE_SIZE);
             personHero.setShowSpriteId(1);
 			break;
 		case 39:
-			
-            // personHero.move(TILE_SIZE, 0); So soll es aussehen
-            
+            personHero.move(TILE_SIZE, 0);
             personHero.setShowSpriteId(3);
 			break;
 		case 40:
-			
-            // personHero.move(0, TILE_SIZE); So soll es aussehen
-            
+            personHero.move(0, TILE_SIZE);
             personHero.setShowSpriteId(0);
 			break;
 	}

@@ -1,3 +1,4 @@
+//
 function CollisionMap(mapHandler) {
     this.mapHandler = mapHandler;
 }
