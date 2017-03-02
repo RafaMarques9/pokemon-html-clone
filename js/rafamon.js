@@ -233,24 +233,15 @@ function loadImages() {
 function spriteLoadCB() {
     spritesToLoad--;
     if(!spritesToLoad) {
-        // renderBg(canvasLayers[0], testMapObject);
         renderObject.drawBg(0, testMapObject);
         
+        // TODO: In den RenderHandler packen.
         renderCharacters(canvasLayers[1]);
     }
 }
 
-/* This is called by the renderBg function to draw the tile sprite to the canvasLayer */
-/*function drawTile(layerContext, tileId, x, y) {
-    if(tileId === 7 || tileId === 8) {
-        canvasLayers[2].getContext("2d").drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
-        layerContext.drawImage(tilesArray[0], x * TILE_SIZE, y * TILE_SIZE);
-    } else {
-        layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
-    }
-}*/
-
 /* 
+* TODO: In den RenderHandler
 * Renders the Character to the canvasLayer[1] 
 */
 function renderCharacters(canvasLayer) {
