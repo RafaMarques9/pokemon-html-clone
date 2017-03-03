@@ -161,7 +161,7 @@ function startGame() {
     loadImages();
     
     renderObject = new RenderHandler(canvasOptions);
-    testMapObject = new MapHandler(testMap, TILE_SIZE, notWalkableId, CANVAS_WIDTH, CANVAS_HEIGHT);
+    testMapObject = new MapHandler(testMap, notWalkableId, canvasOptions);
     collisionObject = new CollisionMap(testMapObject);
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
 }
@@ -251,7 +251,7 @@ function spriteLoadCB() {
         renderObject.drawBg(0, testMapObject);
         
         // TODO: In den RenderHandler packen.
-        renderCharacters(canvasLayers[1]);
+        renderCharacters(canvasOptions.canvas2);
     }
 }
 
@@ -261,33 +261,33 @@ function spriteLoadCB() {
 */
 function renderCharacters(canvasLayer) {
     var layerContext = canvasLayer.getContext("2d");
-    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    layerContext.clearRect(0, 0, canvasOptions.width, canvasOptions.height);
     
     layerContext.drawImage(personHero.getSprite(), personHero.getXPos(), personHero.getYPos() - 5);
     
-    layerContext.drawImage(profSprite, 13 * TILE_SIZE, (15 * TILE_SIZE) - 5);
+    layerContext.drawImage(profSprite, 13 * canvasOptions.tileSize, (15 * canvasOptions.tileSize) - 5);
 }
 
 function onKeyDown(evt) {
     switch(evt.keyCode) {
 		case 37:
-            personHero.move(-TILE_SIZE, 0);
+            personHero.move(-canvasOptions.tileSize, 0);
             personHero.setShowSpriteId(2);
 			break;
 		case 38:
-            personHero.move(0, -TILE_SIZE);
+            personHero.move(0, -canvasOptions.tileSize);
             personHero.setShowSpriteId(1);
 			break;
 		case 39:
-            personHero.move(TILE_SIZE, 0);
+            personHero.move(canvasOptions.tileSize, 0);
             personHero.setShowSpriteId(3);
 			break;
 		case 40:
-            personHero.move(0, TILE_SIZE);
+            personHero.move(0, canvasOptions.tileSize);
             personHero.setShowSpriteId(0);
 			break;
 	}
-    renderCharacters(canvasLayers[1]);
+    renderCharacters(canvasOptions.canvas2);
 }
 
 // TODO:

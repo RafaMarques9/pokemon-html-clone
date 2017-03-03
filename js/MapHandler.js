@@ -1,10 +1,8 @@
 // 
-function MapHandler(map, tileSize, notWalkableTileIDs, canvasWidth, canvasHeight) {
+function MapHandler(map, notWalkableTileIDs, canvasOptions) {
     this.map = map;
-    this.tileSize = tileSize;
     this.notWalkableTileIDs = notWalkableTileIDs;
-    this.canvasWidth = canvasWidth;
-    this.canvasHeight = canvasHeight;
+    this.canvasOptions = canvasOptions;
 }
 
 MapHandler.prototype.getMap = function() {
@@ -12,7 +10,7 @@ MapHandler.prototype.getMap = function() {
 }
 
 MapHandler.prototype.getTileSize = function() {
-    return this.tileSize;
+    return this.canvasOptions.tileSize;
 }
 
 MapHandler.prototype.getNotWalkableTileIDs = function() {
@@ -20,9 +18,9 @@ MapHandler.prototype.getNotWalkableTileIDs = function() {
 }
 
 MapHandler.prototype.getCanvasWidth = function() {
-    return this.canvasWidth;
+    return this.canvasOptions.width;
 }
 
 MapHandler.prototype.getCanvasHeight = function() {
-    return this.canvasHeight;
+    return this.canvasOptions.height;
 }
