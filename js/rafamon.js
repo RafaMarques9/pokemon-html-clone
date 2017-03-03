@@ -12,7 +12,8 @@ var CANVAS;
 var CTX;
 var CANVAS_WIDTH = 1280;
 var CANVAS_HEIGHT = 720;
-var canvasLayers = [];
+// TODO: Dieses Array wird denke ich nicht mehr gebraucht
+//var canvasLayers = [];
 var FPS = 60;
 var TILE_SIZE = 16;
 
@@ -142,36 +143,24 @@ var testMap = [
 ];
 
 function startGame() {
-    // TODO: delete
-    CANVAS = document.getElementById("canvas1");
-    
     // Background Layer
-    var canvas1 = document.getElementById("canvas1");
     canvasOptions.canvas1 = document.getElementById("canvas1");
     
     // Player Layer
-    var canvas2 = document.getElementById("canvas2");
     canvasOptions.canvas2 = document.getElementById("canvas2");
     
     // Over Player & Ambient Animations
-    var canvas3 = document.getElementById("canvas3");
     canvasOptions.canvas3 = document.getElementById("canvas3");
     
-    //canvasLayers.push(canvas1);
+    /* TODO: delete
     canvasLayers.push(canvasOptions.canvas1);
-    
-    //canvasLayers.push(canvas2);
     canvasLayers.push(canvasOptions.canvas2);
-    
-    //canvasLayers.push(canvas3);
     canvasLayers.push(canvasOptions.canvas3);
-    
-    // TODO: delete
-    CTX = canvasLayers[0].getContext("2d");
+    */
     
     loadImages();
     
-    renderObject = new RenderHandler(canvasLayers);
+    renderObject = new RenderHandler(canvasOptions);
     testMapObject = new MapHandler(testMap, TILE_SIZE, notWalkableId, CANVAS_WIDTH, CANVAS_HEIGHT);
     collisionObject = new CollisionMap(testMapObject);
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
