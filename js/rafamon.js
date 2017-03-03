@@ -4,7 +4,10 @@
 * @version 1.0
 * @datum 30.01.2017
 */
-
+/* TODO:
+* Die Canvas Variablen alles in einer speichern.
+* Die alten dann löschen.
+*/
 var CANVAS;
 var CTX;
 var CANVAS_WIDTH = 1280;
@@ -12,6 +15,15 @@ var CANVAS_HEIGHT = 720;
 var canvasLayers = [];
 var FPS = 60;
 var TILE_SIZE = 16;
+
+var canvasOptions = {
+    canvas1: "",
+    canvas2: "",
+    canvas3: "",
+    width: 1280,
+    height: 720,
+    tileSize: 16
+}
 
 // Person Object
 var personHero;
@@ -130,17 +142,31 @@ var testMap = [
 ];
 
 function startGame() {
+    // TODO: delete
     CANVAS = document.getElementById("canvas1");
+    
     // Background Layer
     var canvas1 = document.getElementById("canvas1");
+    canvasOptions.canvas1 = document.getElementById("canvas1");
+    
     // Player Layer
     var canvas2 = document.getElementById("canvas2");
+    canvasOptions.canvas2 = document.getElementById("canvas2");
+    
     // Over Player & Ambient Animations
     var canvas3 = document.getElementById("canvas3");
+    canvasOptions.canvas3 = document.getElementById("canvas3");
     
-    canvasLayers.push(canvas1);
-    canvasLayers.push(canvas2);
-    canvasLayers.push(canvas3);
+    //canvasLayers.push(canvas1);
+    canvasLayers.push(canvasOptions.canvas1);
+    
+    //canvasLayers.push(canvas2);
+    canvasLayers.push(canvasOptions.canvas2);
+    
+    //canvasLayers.push(canvas3);
+    canvasLayers.push(canvasOptions.canvas3);
+    
+    // TODO: delete
     CTX = canvasLayers[0].getContext("2d");
     
     loadImages();

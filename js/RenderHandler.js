@@ -26,3 +26,13 @@ RenderHandler.prototype.drawTile = function(layerContext, tileId, x, y) {
         layerContext.drawImage(tilesArray[tileId], x * TILE_SIZE, y * TILE_SIZE);
     }
 }
+
+RenderHandler.prototype.renderCharacters = function(canvasLayerID) {
+    var layerContext = this.canvases[canvasLayerID].getContext("2d");
+    
+    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    
+    layerContext.drawImage(personHero.getSprite(), personHero.getXPos(), personHero.getYPos() - 5);
+    
+    layerContext.drawImage(profSprite, 13 * TILE_SIZE, (15 * TILE_SIZE) - 5);
+}
