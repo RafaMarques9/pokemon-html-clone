@@ -4,19 +4,6 @@
 * @version 1.0
 * @datum 30.01.2017
 */
-/* TODO:
-* Die Canvas Variablen alles in einer speichern.
-* Die alten dann löschen.
-*/
-var CANVAS;
-var CTX;
-var CANVAS_WIDTH = 1280;
-var CANVAS_HEIGHT = 720;
-// TODO: Dieses Array wird denke ich nicht mehr gebraucht
-//var canvasLayers = [];
-var FPS = 60;
-var TILE_SIZE = 16;
-
 var canvasOptions = {
     canvas1: "",
     canvas2: "",
@@ -151,12 +138,6 @@ function startGame() {
     
     // Over Player & Ambient Animations
     canvasOptions.canvas3 = document.getElementById("canvas3");
-    
-    /* TODO: delete
-    canvasLayers.push(canvasOptions.canvas1);
-    canvasLayers.push(canvasOptions.canvas2);
-    canvasLayers.push(canvasOptions.canvas3);
-    */
     
     loadImages();
     
