@@ -25,8 +25,11 @@ class Person {
     }
     
     move(x, y) {
-        this.x = this.collision.getPosition(0, this.x, this.y, x);
-        this.y = this.collision.getPosition(1, this.x, this.y, y);
+        if(y == 0) {
+            this.x = this.collision.getPosition(0, this.x, this.y, x);
+        } else {
+            this.y = this.collision.getPosition(1, this.x, this.y, y);
+        }
     }
     
     setShowSpriteId(spriteId) {
