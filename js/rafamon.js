@@ -145,6 +145,7 @@ function startGame() {
     testMapObject = new MapHandler(testMap, notWalkableId, canvasOptions);
     collisionObject = new CollisionMap(testMapObject);
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
+    personProf = new Person("Birk", 208, 240, [profSprite], 0, collisionObject);
 }
 
 /* Loads all Sprites and calls the CB function */
@@ -246,7 +247,8 @@ function renderCharacters(canvasLayer) {
     
     layerContext.drawImage(personHero.getSprite(), personHero.getXPos(), personHero.getYPos() - 5);
     
-    layerContext.drawImage(profSprite, 13 * canvasOptions.tileSize, (15 * canvasOptions.tileSize) - 5);
+    //layerContext.drawImage(profSprite, 13 * canvasOptions.tileSize, (15 * canvasOptions.tileSize) - 5);
+    layerContext.drawImage(personProf.getSprite(), personProf.getXPos(), personProf.getYPos() - 5);
 }
 
 function onKeyDown(evt) {

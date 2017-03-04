@@ -38,11 +38,13 @@ RenderHandler.prototype.drawTile = function(tileId, x, y) {
 * Diese Funktion soll alle Charactere auf die Map zeichnen
 * Muss noch mit dem neuen canvasOptions erweitert werden. 
 */
-RenderHandler.prototype.renderCharacters = function(canvasLayerID, character) {
+RenderHandler.prototype.renderCharacters = function(canvasLayerID, characters) {
     var layerContext = this.canvases[canvasLayerID].getContext("2d");
     
-    layerContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    layerContext.clearRect(0, 0, this.canvasOptions.width, this.canvasOptions.height);
     
-    layerContext.drawImage(character.getSprite(), character.getXPos(), character.getYPos() - 5);
-    layerContext.drawImage(profSprite, 13 * TILE_SIZE, (15 * TILE_SIZE) - 5);
+    for(var i = 0; i < characters.length; i++) {   
+        layerContext.drawImage(characters[i].getSprite(), characters[i].getXPos(), characters[i].getYPos() - 5);
+    }
+    
 }
