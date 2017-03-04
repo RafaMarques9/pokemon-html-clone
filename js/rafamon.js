@@ -246,8 +246,6 @@ function renderCharacters(canvasLayer) {
     layerContext.clearRect(0, 0, canvasOptions.width, canvasOptions.height);
     
     layerContext.drawImage(personHero.getSprite(), personHero.getXPos(), personHero.getYPos() - 5);
-    
-    //layerContext.drawImage(profSprite, 13 * canvasOptions.tileSize, (15 * canvasOptions.tileSize) - 5);
     layerContext.drawImage(personProf.getSprite(), personProf.getXPos(), personProf.getYPos() - 5);
 }
 
