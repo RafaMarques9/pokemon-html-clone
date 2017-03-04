@@ -1,26 +1,33 @@
-// 
-function MapHandler(map, notWalkableTileIDs, canvasOptions) {
-    this.map = map;
-    this.notWalkableTileIDs = notWalkableTileIDs;
-    this.canvasOptions = canvasOptions;
-}
-
-MapHandler.prototype.getMap = function() {
-    return this.map;
-}
-
-MapHandler.prototype.getTileSize = function() {
-    return this.canvasOptions.tileSize;
-}
-
-MapHandler.prototype.getNotWalkableTileIDs = function() {
-    return this.notWalkableTileIDs;
-}
-
-MapHandler.prototype.getCanvasWidth = function() {
-    return this.canvasOptions.width;
-}
-
-MapHandler.prototype.getCanvasHeight = function() {
-    return this.canvasOptions.height;
+class MapHandler {
+    constructor(map, notWalkableTileIDs, canvasOptions) {
+        this.map = map;
+        this.notWalkableTileIDs = notWalkableTileIDs;
+        this.canvasOptions = canvasOptions;
+    }
+    
+    getMap() {
+        return this.map;
+    }
+    
+    getTileSize() {
+        return this.canvasOptions.tileSize;
+    }
+    
+    getNotWalkableTileIDs() {
+        return this.notWalkableTileIDs;
+    }
+    
+    /* TODO: 
+    *  Is this function really needed here in the MapHandler?
+    */
+    getCanvasWidth() {
+        return this.canvasOptions.width;
+    }
+    
+    /* TODO: 
+    *  Is this function really needed here in the MapHandler?
+    */
+    getCanvasHeight() {
+        return this.canvasOptions.height;
+    }
 }
