@@ -38,8 +38,7 @@ RenderHandler.prototype.drawTile = function(tileId, x, y) {
 * Diese Funktion soll alle Charactere auf die Map zeichnen
 * Muss noch mit dem neuen canvasOptions erweitert werden. 
 */
-RenderHandler.prototype.drawCharacters = function(canvasLayerID, characters) {
-    //var layerContext = this.canvases[canvasLayerID].getContext("2d");
+RenderHandler.prototype.drawCharacters = function(characters) {
     var canvasLayerContext = this.canvasOptions.canvas2.getContext("2d");
     
     canvasLayerContext.clearRect(0, 0, this.canvasOptions.width, this.canvasOptions.height);

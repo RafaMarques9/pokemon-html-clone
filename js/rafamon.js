@@ -237,22 +237,8 @@ function spriteLoadCB() {
     if(!spritesToLoad) {
         renderObject.drawBg(0, testMapObject);
         
-        // TODO: In den RenderHandler packen.
-        //renderCharacters(canvasOptions.canvas2);
-        renderObject.drawCharacters(1, characterArray);
+        renderObject.drawCharacters(characterArray);
     }
-}
-
-/* 
-* TODO: In den RenderHandler
-* Renders the Character to the canvasLayer[1] 
-*/
-function renderCharacters(canvasLayer) {
-    var layerContext = canvasLayer.getContext("2d");
-    layerContext.clearRect(0, 0, canvasOptions.width, canvasOptions.height);
-    
-    layerContext.drawImage(personHero.getSprite(), personHero.getXPos(), personHero.getYPos() - 5);
-    layerContext.drawImage(personProf.getSprite(), personProf.getXPos(), personProf.getYPos() - 5);
 }
 
 function onKeyDown(evt) {
@@ -274,8 +260,8 @@ function onKeyDown(evt) {
             personHero.setShowSpriteId(0);
 			break;
 	}
-    //renderCharacters(canvasOptions.canvas2);
-    renderObject.drawCharacters(1, characterArray);
+    
+    renderObject.drawCharacters(characterArray);
 }
 
 // TODO:
