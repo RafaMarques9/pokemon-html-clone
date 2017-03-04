@@ -1,9 +1,11 @@
 class CollisionMap {
-    constructor(mapHandler) {
+    constructor(mapHandler, characters) {
         this.mapHandler = mapHandler;
+        this.characters = characters;
     }
     
     getPosition(isY, x, y, move) {
+        console.log(this.characters.length);
         var newPosition = isY ? y : x;
         var tryPosition = isY ? y + move : x + move;
         

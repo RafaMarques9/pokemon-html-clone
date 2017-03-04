@@ -147,7 +147,7 @@ function startGame() {
     
     renderObject = new RenderHandler(canvasOptions);
     testMapObject = new MapHandler(testMap, notWalkableId, canvasOptions);
-    collisionObject = new CollisionMap(testMapObject);
+    collisionObject = new CollisionMap(testMapObject, characterArray);
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
     characterArray.push(personHero);
     personProf = new NPCPerson("Birk", 208, 240, [profSprite], 0, collisionObject);
