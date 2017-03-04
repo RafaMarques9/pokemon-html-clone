@@ -150,7 +150,7 @@ function startGame() {
     collisionObject = new CollisionMap(testMapObject);
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
     characterArray.push(personHero);
-    personProf = new Person("Birk", 208, 240, [profSprite], 0, collisionObject);
+    personProf = new NPCPerson("Birk", 208, 240, [profSprite], 0, collisionObject);
     characterArray.push(personProf);
 }
 
