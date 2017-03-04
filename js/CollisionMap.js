@@ -26,14 +26,13 @@ class CollisionMap {
             newY = y;
         }
         
-        var isCharacterOnNextTile = this.characterOnNextTile(x, y);
-        if(isCharacterOnNextTile) {console.log("Hurra!");}
+        var isCharacterOnNextTile = this.characterOnNextTile(newX, newY);
         
         console.log("destinyTileId: " + destinyTileId);
         
-        if(isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
+        if(!isCharacterOnNextTile && isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
             newPosition = y + move;
-        } else if(!isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
+        } else if(!isCharacterOnNextTile && !isY && jQuery.inArray(destinyTileId, notWalkableId) == -1) {
             newPosition = x + move;
         }
         
@@ -42,7 +41,7 @@ class CollisionMap {
     
     characterOnNextTile(x, y) {
         for(var i = 0; i < this.characters.length; i++) {
-            if((x == this.characters[i].getXPos()) && (y == this.characters[i].getYPos())) {
+            if((x == this.characters[i].getXPos()) && (y == this.characters[i].getYPos()) && !("Brendan" == this.characters[i].getName())) {
                 return true;
             }
         }
