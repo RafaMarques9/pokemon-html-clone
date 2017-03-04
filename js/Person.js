@@ -1,4 +1,4 @@
-class Person{
+class Person {
     constructor(name, posX, posY, sprite, showSpriteId, collision) {
         this.name = name;
         this.x = posX;
