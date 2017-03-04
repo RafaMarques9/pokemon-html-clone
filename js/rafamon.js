@@ -15,6 +15,9 @@ var canvasOptions = {
 
 // Person Object
 var personHero;
+var personProf;
+
+var characterArray = [];
 
 // Map Object
 var testMapObject;
@@ -145,7 +148,9 @@ function startGame() {
     testMapObject = new MapHandler(testMap, notWalkableId, canvasOptions);
     collisionObject = new CollisionMap(testMapObject);
     personHero = new Person("Brendan", 48, 32, [heroSpriteDown, heroSpriteUp, heroSpriteLeft, heroSpriteRight], 0, collisionObject);
+    characterArray.push(personHero);
     personProf = new Person("Birk", 208, 240, [profSprite], 0, collisionObject);
+    characterArray.push(personProf);
 }
 
 /* Loads all Sprites and calls the CB function */
@@ -233,7 +238,8 @@ function spriteLoadCB() {
         renderObject.drawBg(0, testMapObject);
         
         // TODO: In den RenderHandler packen.
-        renderCharacters(canvasOptions.canvas2);
+        //renderCharacters(canvasOptions.canvas2);
+        renderObject.drawCharacters(1, characterArray);
     }
 }
 
@@ -268,7 +274,8 @@ function onKeyDown(evt) {
             personHero.setShowSpriteId(0);
 			break;
 	}
-    renderCharacters(canvasOptions.canvas2);
+    //renderCharacters(canvasOptions.canvas2);
+    renderObject.drawCharacters(1, characterArray);
 }
 
 // TODO:
