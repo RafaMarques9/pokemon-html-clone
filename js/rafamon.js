@@ -17,6 +17,7 @@ var canvasOptions = {
 var personHero;
 var personProf;
 
+// Holds all the person Objects for the drawCharacters
 var characterArray = [];
 
 // Map Object
