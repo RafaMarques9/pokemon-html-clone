@@ -26,7 +26,7 @@ class CollisionMap {
             newY = y;
         }
         
-        var isCharacterOnNextTile = this.characterOnNextTile(newX, newY);
+        var isCharacterOnNextTile = this.characterOnNextTile(newX, newY, false);
         
         console.log("destinyTileId: " + destinyTileId);
         
@@ -39,10 +39,14 @@ class CollisionMap {
         return newPosition;
     }
     
-    characterOnNextTile(x, y) {
+    characterOnNextTile(x, y, isDialog) {
         for(var i = 0; i < this.characters.length; i++) {
             if((x == this.characters[i].getXPos()) && (y == this.characters[i].getYPos()) && !("Brendan" == this.characters[i].getName())) {
-                return true;
+                if(isDialog) {
+                    return this.characters[i];
+                } else {
+                    return true;
+                }
             }
         }
         

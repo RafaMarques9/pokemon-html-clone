@@ -39,4 +39,26 @@ class Person {
     getShowSpriteId() {
         return this.showSpriteId;
     }
+    
+    checkNextField() {
+        var target;
+        switch(this.getShowSpriteId()) {
+            case 0: // Down
+                target = this.collision.characterOnNextTile(this.x, this.y + 16, true);
+                break;
+            case 1: // Up
+                target = this.collision.characterOnNextTile(this.x, this.y - 16, true);
+                break;
+            case 2: // Left
+                target = this.collision.characterOnNextTile(this.x - 16, this.y, true);
+                break;
+            case 3: // Right
+                target = this.collision.characterOnNextTile(this.x + 16, this.y, true);
+                break;
+        }
+        
+        if(target) {
+            target.talkWith(this);
+        }
+    }
 }

@@ -260,6 +260,9 @@ function onKeyDown(evt) {
             personHero.move(0, canvasOptions.tileSize);
             personHero.setShowSpriteId(0);
 			break;
+        case 32: // Leertaste
+            personHero.checkNextField();
+            break;
 	}
     
     renderObject.drawCharacters(characterArray);
